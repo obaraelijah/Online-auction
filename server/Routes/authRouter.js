@@ -148,7 +148,7 @@ authRouter.put('/password/update', authenticate, async (req, res) => {
   });
     
  // contact us page route
- router.post('/contact', authenticate, async (req, res) => {
+ authRouter.post('/contact', authenticate, async (req, res) => {
     const { name, email, subject, message } = req.body;
   
     try {
@@ -169,6 +169,44 @@ authRouter.put('/password/update', authenticate, async (req, res) => {
       console.log(`Contact form error: ${error}`);
     }
   });
-   
+  
+  //feedback page
+  authRouter.post('/feedback', authenticate, async (req, res) => {
+    const { name, email, subject, message } = req.body;
+  
+    try {
+      if (!name || !email || !subject || !message) {
+        console.log("Error in feedback form at server side");
+        return res.json({ error: "All fields must be filled" });
+      }
+  
+      const userContact = await User.findOne({ _id: req.userID });
+  
+      if (userContact) {
+        const userMessage = await userContact.addFeedback(name, email, subject, message);
+        await userContact.save();
+  
+        res.status(201).json({ message: "User Feedback Form Saved Successfully" });
+      }
+    } catch (error) {
+      console.log(`Feedback form error: ${error}`);
+    }
+  });
+
+ //logout functionality
+ authRouter.get('/logout', authenticate, async (req, res) => {
+    try {
+      req.user.tokens = req.user.tokens.filter(token => token.token !== req.token);
+      await req.user.save();
+      
+      res.clearCookie('jwtoken', { path: '/' });
+      
+      res.status(200).json({ message: "User logged out successfully" });
+    } catch (error) {
+      console.log(`Logout error: ${error}`);
+      res.status(500).json({ error: "Server error" });
+    }
+  });
+  
 
 export default authRouter;
