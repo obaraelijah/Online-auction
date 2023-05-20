@@ -143,3 +143,18 @@ exports.createProduct = catchAsyncErrors(async (req, res, next) => {
     });
   });
 
+// Deleting a product
+exports.deleteProduct = catchAsyncErrors(async (req, res, next) => {
+    const product = await Product.findById(req.params.id);
+  
+    if (!product) {
+      return next(new ErrorHandler("Product Not Found", 404));
+    }
+  
+    await product.remove();
+  
+    res.status(200).json({
+      success: true,
+      message: "Product Deleted",
+    });
+  });
