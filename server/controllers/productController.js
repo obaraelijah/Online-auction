@@ -224,4 +224,73 @@ exports.deleteProduct = catchAsyncErrors(async (req, res, next) => {
   });
   
   
+//get product details
+exports.getProductDetails = catchAsyncErrors(async (req, res, next) => {
+    const product = await Product.findById(req.params.id)
+      .populate("seller", "_id name phone email")
+      .populate("bids.bidder", "_id name phone email");
+    const sellerDetails = product.seller;
+  
+    const bidWinner = product.bids.reduce((prev, current) => {
+      return prev.bid > current.bid ? prev : current;
+    });
+  
+    if (!product) {
+      return next(new ErrorHandler("Product Not Found", 404));
+    }
+  
+    res.status(200).json({
+      success: true,
+      product,
+      sellerDetails,
+      winStatus: bidWinner,
+    });
+  });
+
+//place bid on products
+exports.placeBidOnProduct = catchAsyncErrors(async (req, res, next) => {
+    console.log(`Place Bid On Product Function from Route Called`);
+  
+    try {
+      // Get current token from JWT token
+      const token = req.cookies.jwtoken;
+      const verifyToken = jwt.verify(token, process.env.SECRET_KEY);
+      const rootUser = await User.findOne({ _id: verifyToken._id, "tokens.token": token });
+      if (!rootUser) {
+        throw new Error('User Not Found');
+      }
+      req.token = token;
+      req.rootUser = rootUser;
+      req.userID = rootUser._id;
+    } catch (err) {
+      console.log(`Error token verification`);
+      res.status(401).send('Unauthorized: No token provided');
+    }
+  
+    console.log(req.body);
+    // This body contains Product Id and bid Amount
+  
+    const bid = {
+      bidder: req.userID,
+      bid: req.body.bidAmount,
+      time: Date.now(),
+    };
+  
+    console.log(bid);
+  
+    let product = await Product.findById(req.body.productId);
+  
+    if (!product) {
+      return next(new ErrorHandler("Product Not Found", 404));
+    }
+  
+    // Update bid on product
+    product.bids.push(bid);
+    product = await product.save();
+  
+    res.status(201).json({
+      success: true,
+      product,
+    });
+  });
   
