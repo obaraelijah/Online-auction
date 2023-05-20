@@ -71,3 +71,29 @@ exports.createProduct = catchAsyncErrors(async (req, res, next) => {
       return res.status(500).send("Internal Server Error");
     }
   });
+
+  //getting all products
+  exports.getAllProducts = catchAsyncErrors(async (req, res, next) => {
+    const resultPerPage = 9;
+    const productCount = await Product.countDocuments({ bidEnd: { $gt: new Date() } });
+  
+    const apiFeature = new ApiFeatures(
+      Product.find({ bidEnd: { $gt: new Date() } })
+        .populate("seller", "_id name phone email")
+        .populate("bids.bidder", "_id name"),
+      req.query
+    )
+      .search()
+      .filter()
+      .pagination(resultPerPage);
+  
+    const products = await apiFeature.query;
+  
+    res.status(200).json({
+      success: true,
+      products,
+      productCount,
+      resultPerPage,
+    });
+  });
+    
