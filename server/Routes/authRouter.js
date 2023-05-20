@@ -124,4 +124,51 @@ authRouter.put('/password/update', authenticate, async (req, res) => {
     }
   });
 
+ //update user profile
+ authRouter.put('/me/update', authenticate, async (req, res) => {
+    console.log(req.body.name, req.body.email, req.body.phone);
+    try {
+      const newUserData = {
+        name: req.body.name,
+        email: req.body.email,
+        phone: req.body.phone,
+      };
+  
+      const user = await User.findByIdAndUpdate(req.userID, newUserData, {
+        new: true,
+        runValidators: true,
+        useFindAndModify: false,
+      });
+  
+      res.status(200).json({ success: true });
+    } catch (error) {
+      console.log(`Profile Update error: ${error}`);
+      res.status(400).json({ error: "Profile Update Error" });
+    }
+  });
+    
+ // contact us page route
+ router.post('/contact', authenticate, async (req, res) => {
+    const { name, email, subject, message } = req.body;
+  
+    try {
+      if (!name || !email || !subject || !message) {
+        console.log("Error in contact form at server side");
+        return res.json({ error: "All fields must be filled" });
+      }
+  
+      const userContact = await User.findOne({ _id: req.userID });
+  
+      if (userContact) {
+        const userMessage = await userContact.addMessage(name, email, subject, message);
+        await userContact.save();
+  
+        res.status(201).json({ message: "User Contact Form Saved Successfully" });
+      }
+    } catch (error) {
+      console.log(`Contact form error: ${error}`);
+    }
+  });
+   
+
 export default authRouter;
