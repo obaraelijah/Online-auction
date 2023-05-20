@@ -97,3 +97,16 @@ userSchema.methods.generateAuthToken = async function () {
                 console.log(err);
     }
 }
+
+//Save contact data
+userSchema.methods.addMessage = async function(name, email, subject, message){
+    try {
+        
+    this.messages = this.messages.concat({name, email, subject, message});
+    await this.save();
+    return this.messages;
+    } catch (error) {
+        console.log(`userSchema error : ${error}`);   
+    }
+}
+    
