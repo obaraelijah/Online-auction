@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "expserver.js",
+  "type": "module",
   "scripts": {
     "start": "nodemon server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -21,7 +22,9 @@
     "mongoose": "^6.1.8",
     "react-stripe-checkout": "^2.6.3",
     "stripe": "^8.207.0",
-    "uuid": "^8.3.2",
-    "nodemon": "^2.0.19"
+    "uuid": "^8.3.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.22"
   }
 }
