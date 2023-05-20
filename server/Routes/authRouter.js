@@ -6,8 +6,6 @@ import User from "../model/userSchema.js";
 
 const authRouter = express.Router();
 
-
-
 authRouter.get('/', (req, res) => {
     res.send('Router js is called');
 });
