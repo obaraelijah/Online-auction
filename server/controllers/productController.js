@@ -158,3 +158,40 @@ exports.deleteProduct = catchAsyncErrors(async (req, res, next) => {
       message: "Product Deleted",
     });
   });
+
+  //get a specific product
+  exports.getMyProducts = catchAsyncErrors(async (req, res) => {
+    try {
+      // Get current token from JWT token
+      const token = req.cookies.jwtoken;
+      const verifyToken = jwt.verify(token, process.env.SECRET_KEY);
+      const rootUser = await User.findOne({
+        _id: verifyToken._id,
+        "tokens.token": token,
+      });
+      if (!rootUser) {
+        throw new Error("User Not Found");
+      }
+      req.token = token;
+      req.rootUser = rootUser;
+      req.userID = rootUser._id;
+    } catch (err) {
+      console.log(`error token verification`);
+      res.status(401).send("Unauthorized: No token provided");
+    }
+  
+    let sellerproducts = await Product.find({ seller: req.userID })
+      .populate("seller", "_id name phone")
+      .populate("bids.bidder", "_id name phone");
+  
+    console.log(`myProduct page Called`);
+    res.status(200).json({
+      success: true,
+      sellerproducts,
+    });
+  });
+
+  
+  
+  
+  
