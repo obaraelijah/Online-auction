@@ -38,8 +38,8 @@ process.on("uncaughtException" , err => {
 });
 
 // Routers
-app.use('/auth', authRouter);
-app.use('/products', productsRouter)
+app.use( authRouter);
+app.use( productsRouter)
 
 //middleware for errors
 
