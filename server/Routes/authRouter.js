@@ -99,5 +99,29 @@ authRouter.get('/getdata', authenticate , (req, res) => {
     res.send(req.rootUser);
 });
 
+//change password route
+authRouter.put('/password/update', authenticate, async (req, res) => {
+    try {
+      const user = await User.findById(req.userID).select('+password');
+  
+      const isPasswordMatched = await bcrypt.compare(req.body.oldPassword, user.password);
+  
+      if (!isPasswordMatched) {
+        res.status(400).json({ error: 'Old password incorrect' });
+      }
+  
+      if (req.body.newPassword !== req.body.confirmPassword) {
+        res.status(400).json({ error: 'Passwords do not match' });
+      }
+  
+      user.password = req.body.newPassword;
+  
+      await user.save();
+  
+      res.status(200).send(req.token);
+    } catch (error) {
+      console.log(`Password reset error: ${error}`);
+    }
+  });
 
 export default authRouter;
