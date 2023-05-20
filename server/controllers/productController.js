@@ -191,7 +191,37 @@ exports.deleteProduct = catchAsyncErrors(async (req, res, next) => {
     });
   });
 
+  // get bidded product --> bid status
+  exports.getBiddedProduct = catchAsyncErrors(async (req, res) => {
+    console.log(`get Bidded product Page called`);
+    try {
+      // Get current token from JWT token
+      const token = req.cookies.jwtoken;
+      const verifyToken = jwt.verify(token, process.env.SECRET_KEY);
+      const rootUser = await User.findOne({
+        _id: verifyToken._id,
+        "tokens.token": token,
+      });
+      if (!rootUser) {
+        throw new Error("User Not Found");
+      }
+      req.token = token;
+      req.rootUser = rootUser;
+      req.userID = rootUser._id;
+    } catch (err) {
+      console.log(`error token verification`);
+      res.status(401).send("Unauthorized: No token provided");
+    }
   
+    let myproducts = await Product.find({ "bids.bidder": req.userID })
+      .populate("seller", "_id name phone")
+      .populate("bids.bidder", "_id name phone");
+  
+    res.status(200).json({
+      success: true,
+      myproducts,
+    });
+  });
   
   
   
