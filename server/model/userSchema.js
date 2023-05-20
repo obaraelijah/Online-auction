@@ -99,7 +99,7 @@ const userSchema = mongoose.Schema({
     }
   };
   
-  // SAVE CONTACT DATA
+  // save contact data
   userSchema.methods.addMessage = async function (name, email, subject, message) {
     try {
       this.messages = this.messages.concat({ name, email, subject, message });
@@ -110,7 +110,7 @@ const userSchema = mongoose.Schema({
     }
   };
   
-// SAVE FEEDBACK DATA
+//save feedback data
 userSchema.methods.addFeedback = async function (name, email, subject, message) {
     try {
     this.fmessages = this.fmessages.concat({ name, email, subject, message });
