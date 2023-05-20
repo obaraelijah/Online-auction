@@ -44,6 +44,46 @@ authRouter.post('/register', async (req, res) => {
     }
 });
 
+authRouter.post('/signin', async (req, res) => {
+    try {
+        let token;
+        const { email, password } = req.body;
+
+        if (!email || !password) {
+            return res.status(400).json({ error: 'Invalid credentials' });
+        }
+
+        if (password.length < 8) {
+            return res.status(400).json({ error: 'Invalid credentials' });
+        }
+
+        console.log(password.length);
+        const userLogin = await User.findOne({ email: email });
+
+        if (userLogin) {
+            const isMatch = await bcrypt.compare(password, userLogin.password);
+
+            if (!isMatch) {
+                res.status(400).json({ error: 'Invalid credentials' });
+            } else {
+                token = await userLogin.generateAuthToken();
+                console.log(token);
+
+                res.cookie('jwtoken', token, {
+                    expires: new Date(Date.now() + 25892000000),
+                    httpOnly: true,
+                });
+                res.json({ message: 'User signed in successfully' });
+            }
+        } else {
+            res.status(400).json({ error: 'Invalid credentials' });
+        }
+    } catch (err) {
+        console.log(err);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+});
+
 //signin
 
 
