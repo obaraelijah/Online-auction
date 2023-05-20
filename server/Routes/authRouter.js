@@ -44,6 +44,7 @@ authRouter.post('/register', async (req, res) => {
     }
 });
 
+//signin
 authRouter.post('/signin', async (req, res) => {
     try {
         let token;
@@ -84,7 +85,7 @@ authRouter.post('/signin', async (req, res) => {
     }
 });
 
-//signin
+
 
 
 export default authRouter;
