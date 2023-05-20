@@ -100,8 +100,7 @@ userSchema.methods.generateAuthToken = async function () {
 
 //Save contact data
 userSchema.methods.addMessage = async function(name, email, subject, message){
-    try {
-        
+    try {    
     this.messages = this.messages.concat({name, email, subject, message});
     await this.save();
     return this.messages;
@@ -109,4 +108,13 @@ userSchema.methods.addMessage = async function(name, email, subject, message){
         console.log(`userSchema error : ${error}`);   
     }
 }
-    
+//save feedback data
+userSchema.methods.addFeedback = async function(name, email, subject, message){
+    try { 
+    this.fmessages = this.fmessages.concat({name, email, subject, message});
+    await this.save();
+    return this.fmessages;
+    } catch (error) {
+        console.log(`userSchema error : ${error}`);
+    }
+    }
