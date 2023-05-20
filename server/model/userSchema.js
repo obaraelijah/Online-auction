@@ -121,7 +121,8 @@ userSchema.methods.addFeedback = async function (name, email, subject, message) 
     }
     };
     
-const User = mongoose.model('User', userSchema);
+const User = mongoose.model('USER', userSchema);
     
-module.exports = User;
+export default User;
+
 

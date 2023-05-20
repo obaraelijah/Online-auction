@@ -7,6 +7,11 @@ import cors from 'cors';
 import fileUpload from 'express-fileupload';
 import bodyParser from 'body-parser';
 
+
+import authRouter from './Routes/authRouter.js';
+import productsRouter from './Routes/productsRouter.js';
+
+
 dotenv.config()
 
 const app = express();
@@ -31,6 +36,13 @@ process.on("uncaughtException" , err => {
   console.log(`Server is closing due to Handling Uncaught Error Exception`);
 
 });
+
+// Routers
+app.use('/auth', authRouter);
+app.use('/products', productsRouter)
+
+//middleware for errors
+
 
 //db connection
 async function connect() {

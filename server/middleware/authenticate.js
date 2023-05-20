@@ -1,5 +1,5 @@
 import jwt from "jsonwebtoken";
-import User from "../model/userSchema";
+import User from "../model/userSchema.js";
 
 /*THIS FILE IS FOR AUTHENTICATION TOKE VERIFICATION -> AT ANI TIME USER ID MUSTR BE VERIFY WITH CURRENT TOKE  ID THEN ONLY WE CAN RETRAIN INFORMATION FROM CURRRENT USER ID*/
 
