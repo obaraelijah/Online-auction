@@ -1,13 +1,13 @@
-import Product from "../model/productModel";
-import ErrorHandler from "../utils/errorHander";
-import catchAsyncErrors from "../middleware/catchAsyncErrors";
-import ApiFeatures from "../utils/apifeatures";
+import Product from "../model/productModel.js";
+import ErrorHandler from "../utils/errorHander.js";
+import catchAsyncErrors from "../middleware/catchAsyncErrors.js";
+import ApiFeatures from "../utils/apifeatures.js";
 import cloudinary from "cloudinary";
 
 import jwt from "jsonwebtoken";
-import User from "../model/userSchema";
+import User from "../model/userSchema.js";
 
-exports.createProduct = catchAsyncErrors(async (req, res, next) => {
+export const createProduct = catchAsyncErrors(async (req, res, next) => {
     console.log(`Create Product Function from Route Called`);
   
     try {
@@ -73,7 +73,7 @@ exports.createProduct = catchAsyncErrors(async (req, res, next) => {
   });
 
   //getting all products
-  exports.getAllProducts = catchAsyncErrors(async (req, res, next) => {
+  export const getAllProducts = catchAsyncErrors(async (req, res, next) => {
     const resultPerPage = 9;
     const productCount = await Product.countDocuments({ bidEnd: { $gt: new Date() } });
   
@@ -97,7 +97,7 @@ exports.createProduct = catchAsyncErrors(async (req, res, next) => {
     });
   });
     
-  exports.updateProduct = catchAsyncErrors(async (req, res, next) => {
+  export const updateProduct = catchAsyncErrors(async (req, res, next) => {
     let product = await Product.findById(req.params.id);
   
     if (!product) {
@@ -144,7 +144,7 @@ exports.createProduct = catchAsyncErrors(async (req, res, next) => {
   });
 
 // Deleting a product
-exports.deleteProduct = catchAsyncErrors(async (req, res, next) => {
+export const deleteProduct = catchAsyncErrors(async (req, res, next) => {
     const product = await Product.findById(req.params.id);
   
     if (!product) {
@@ -160,7 +160,7 @@ exports.deleteProduct = catchAsyncErrors(async (req, res, next) => {
   });
 
   //get a specific product
-  exports.getMyProducts = catchAsyncErrors(async (req, res) => {
+  export const getMyProducts = catchAsyncErrors(async (req, res) => {
     try {
       // Get current token from JWT token
       const token = req.cookies.jwtoken;
@@ -192,7 +192,7 @@ exports.deleteProduct = catchAsyncErrors(async (req, res, next) => {
   });
 
   // get bidded product --> bid status
-  exports.getBiddedProduct = catchAsyncErrors(async (req, res) => {
+  export const getBiddedProduct = catchAsyncErrors(async (req, res) => {
     console.log(`get Bidded product Page called`);
     try {
       // Get current token from JWT token
@@ -225,7 +225,7 @@ exports.deleteProduct = catchAsyncErrors(async (req, res, next) => {
   
   
 //get product details
-exports.getProductDetails = catchAsyncErrors(async (req, res, next) => {
+export const getProductDetails = catchAsyncErrors(async (req, res, next) => {
     const product = await Product.findById(req.params.id)
       .populate("seller", "_id name phone email")
       .populate("bids.bidder", "_id name phone email");
@@ -248,7 +248,7 @@ exports.getProductDetails = catchAsyncErrors(async (req, res, next) => {
   });
 
 //place bid on products
-exports.placeBidOnProduct = catchAsyncErrors(async (req, res, next) => {
+export const placeBidOnProduct = catchAsyncErrors(async (req, res, next) => {
     console.log(`Place Bid On Product Function from Route Called`);
   
     try {

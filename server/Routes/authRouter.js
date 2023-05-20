@@ -207,6 +207,7 @@ authRouter.put('/password/update', authenticate, async (req, res) => {
       res.status(500).json({ error: "Server error" });
     }
   });
+
   
 
 export default authRouter;
