@@ -85,7 +85,19 @@ authRouter.post('/signin', async (req, res) => {
     }
 });
 
+//about
+authRouter.get('/about', authenticate, (req, res) => {
+    console.log('about us page');
+    // req.rootUser -> Sending Currently logged in person profile
+    res.send(req.rootUser);
+  });
 
+//get userdata
+authRouter.get('/getdata', authenticate , (req, res) => {
+    console.log(`about us page`);
+    // req.rootUser -> Sending Currently logged in person profile 
+    res.send(req.rootUser);
+});
 
 
 export default authRouter;
