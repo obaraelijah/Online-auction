@@ -239,4 +239,37 @@ export const productDetailsReducer = (state = { product: {} }, action) =>{
         }
         
         };
-    
+    //seller product reducer
+    export const sellerproductReducer = (state = { sellerproducts: [] }, action) =>{
+
+        switch (action.type) {
+            case SELLER_PRODUCT_REQUEST:
+                return{
+                    loading:true,
+                    sellerproduct:[],
+                };
+        
+                case SELLER_PRODUCT_SUCCESS:
+                return{
+                    loading:false,
+                    sellerproducts:action.payload.sellerproducts,
+                    
+                };
+        
+                case SELLER_PRODUCT_FAIL:
+                return{
+                    loading:false,
+                    error: action.payload,
+                };
+                
+                case CLEAR_ERRORS:
+                return{
+                    ...state,
+                    error: null,          
+                };
+        
+            default:
+                return state;
+        }
+        
+        };
