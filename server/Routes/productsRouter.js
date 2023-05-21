@@ -5,7 +5,9 @@ import {
     updateProduct,
     deleteProduct,
     getProductDetails,
-    getMyProducts 
+    getMyProducts,
+    getBiddedProduct,
+    placeBidOnProduct 
 } from "../controllers/productController.js";
 
 const productsRouter = express.Router()
@@ -21,6 +23,13 @@ productsRouter.route("/product/:id").put(updateProduct).delete(deleteProduct).ge
 
 //get my products
 productsRouter.route("/products/myproducts").get(getMyProducts);
+
+//get bidded products
+productsRouter.route("/products/bidstatus").get(getBiddedProduct);
+
+//place bid
+productsRouter.route("/products/bid").post(placeBidOnProduct);
+
 
 
 export default productsRouter;
