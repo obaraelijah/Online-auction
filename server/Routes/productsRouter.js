@@ -31,5 +31,4 @@ productsRouter.route("/products/bidstatus").get(getBiddedProduct);
 productsRouter.route("/products/bid").post(placeBidOnProduct);
 
 
-
 export default productsRouter;
