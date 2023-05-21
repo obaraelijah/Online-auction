@@ -145,3 +145,98 @@ export const productDetailsReducer = (state = { product: {} }, action) =>{
         }
         
         };
+
+        // delete product
+        export const deleteProductReducer = (state =  {} , action) =>{
+
+            switch (action.type) {
+                case DELETE_PRODUCT_REQUEST:
+                    case UPDATE_PRODUCT_REQUEST:
+                    return{
+                        ...state,
+                        loading:true,
+                    };
+            
+                    case DELETE_PRODUCT_SUCCESS:
+                    return{
+                        ...state,
+                        loading:false,
+                        isDeleted: action.payload,
+                    };
+    
+                    
+                    case UPDATE_PRODUCT_SUCCESS:
+                    return{
+                        ...state,
+                        loading:false,
+                        isUpdated: action.payload,
+                    };
+    
+                    case DELETE_PRODUCT_FAIL:
+                        case UPDATE_PRODUCT_FAIL:
+                    return{
+                        ...state,
+                        loading:false,
+                        error: action.payload,
+                    };
+            
+                    case DELETE_PRODUCT_RESET:
+                    return{
+                        ...state,
+                       isDeleted: false,
+                    };
+    
+                    case UPDATE_PRODUCT_RESET:
+                    return{
+                        ...state,
+                        isUpdated:false,
+                    };
+    
+                    
+                    case CLEAR_ERRORS:
+                    return{
+                        ...state,
+                        error: null,          
+                    };
+            
+                default:
+                    return state;
+            }
+            
+            };
+
+    //bidded product reducer 
+    export const biddedproductReducer = (state = { myproducts: [] }, action) =>{
+
+        switch (action.type) {
+            case BIDDED_PRODUCT_REQUEST:
+                return{
+                    loading:true,
+                    myproduct:[],
+                };
+        
+                case BIDDED_PRODUCT_SUCCESS:
+                return{
+                    loading:false,
+                    myproducts:action.payload.myproducts,
+                    
+                };
+        
+                case BIDDED_PRODUCT_FAIL:
+                return{
+                    loading:false,
+                    error: action.payload,
+                };
+                
+                case CLEAR_ERRORS:
+                return{
+                    ...state,
+                    error: null,          
+                };
+        
+            default:
+                return state;
+        }
+        
+        };
+    
