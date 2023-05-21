@@ -61,3 +61,39 @@ export const productReducer = (state = { products: [] }, action) =>{
     
     };
 
+// for single product details
+export const productDetailsReducer = (state = { product: {} }, action) =>{
+
+    switch (action.type) {
+        case PRODUCT_DETAILS_REQUEST:
+            return{
+                loading:true,
+                ...state,
+            };
+    
+            case PRODUCT_DETAILS_SUCCESS:
+            return{
+                loading:false,
+                product:action.payload.product,
+                sellerDetails:action.payload.sellerDetails,
+                winStatus:action.payload.winStatus,
+            };
+    
+            case PRODUCT_DETAILS_FAIL:
+            return{
+                loading:false,
+                error: action.payload,
+            };
+            
+            case CLEAR_ERRORS:
+            return{
+                ...state,
+                error: null,          
+            };
+    
+        default:
+            return state;
+    }
+    
+    };
+
