@@ -1,5 +1,5 @@
 import Product from "../model/productModel.js";
-import ErrorHandler from "../utils/errorHander.js";
+import ErrorHandler from "../utils/errorHandler.js";
 import catchAsyncErrors from "../middleware/catchAsyncErrors.js";
 import ApiFeatures from "../utils/apifeatures.js";
 import cloudinary from "cloudinary";

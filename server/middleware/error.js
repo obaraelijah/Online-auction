@@ -1,6 +1,6 @@
-import ErrorHandler from "../utils/errorHandler";
+import ErrorHandler from "../utils/errorHandler.js";
 
-export default (err, req, res, next) => {
+export default function errorManager(err, req, res, next) {
   err._statusCode = err.statusCode || 500;
   err._message = err.message || "Internal Server Error";
 

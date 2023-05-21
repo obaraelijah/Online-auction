@@ -11,6 +11,7 @@ import bodyParser from 'body-parser';
 import authRouter from './Routes/authRouter.js';
 import productsRouter from './Routes/productsRouter.js';
 
+import errorManager from './middleware/error.js';
 
 dotenv.config()
 
@@ -38,10 +39,11 @@ process.on("uncaughtException" , err => {
 });
 
 // Routers
-app.use( authRouter);
-app.use( productsRouter)
+app.use(authRouter);
+app.use(productsRouter);
 
 //middleware for errors
+app.use(errorManager);
 
 
 //db connection
