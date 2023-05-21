@@ -159,3 +159,53 @@ dispatch({
 
 };
 
+//get bidded product
+export const getBiddedProducts = () => async (dispatch) => {
+    try {  
+        
+dispatch({ type:BIDDED_PRODUCT_REQUEST });
+
+const {data} = await axios.get(`/products/bidstatus`);
+
+dispatch({
+    type:BIDDED_PRODUCT_SUCCESS,
+    payload:data,
+})
+
+    } catch (error) {
+        dispatch({
+            type: BIDDED_PRODUCT_FAIL,
+            payload:error.response.data.message,
+        });
+        
+    }
+
+};
+
+//get seller products
+export const getSellerProducts = () => async (dispatch) => {
+    try {  
+        
+dispatch({ type:SELLER_PRODUCT_REQUEST });
+
+const {data} = await axios.get(`/products/myproducts`);
+
+dispatch({
+    type:SELLER_PRODUCT_SUCCESS,
+    payload:data,
+})
+
+    } catch (error) {
+        dispatch({
+            type: SELLER_PRODUCT_FAIL,
+            payload:error.response.data.message,
+        });
+        
+    }
+
+};
+
+//clearing error
+export const clearErrors = () => async (dispatch) => {
+    dispatch({type:CLEAR_ERRORS});
+    }
