@@ -40,7 +40,7 @@ dispatch(getProduct());
   return (
     <>{loading ? (<Loader/>) :(
     <>
-    <MetaData title="BEST BID"></MetaData>
+    <MetaData title="Best Bid"></MetaData>
       <section id='header' className='d-flex align-items-center homepg'>
 
 
@@ -95,7 +95,7 @@ dispatch(getProduct());
               </div>
               </div>
               <h3 className="mb-3">Security</h3>
-              <p>All the sellers are to be verified through our system. Your account details are secured. User's password is to be encrypted .You can bid safely without any 3rd party interruption.</p>
+              <p>All sellers are required to undergo verification through our system, guaranteeing the security of your account details. User passwords are encrypted to provide enhanced protection. Bid with peace of mind, free from any interference by third parties..</p>
             </div>
           </div>
           <div className="col-md-4" data-aos="fade-up" data-aos-delay="400">
@@ -106,9 +106,7 @@ dispatch(getProduct());
               </div>
               </div>
               <h3 className="mb-3">Availability</h3>
-              <p>The web-app can available 24*7. User can login and register at website at 
-any time. Lots of the product will be available only for the decided time by 
-seller.</p>
+              <p>The web app is available 24/7, allowing users to login and register on the website at any time. Please note that some products will only be available for a specific duration determined by the seller.</p>
             </div>
           </div>
 
@@ -120,8 +118,7 @@ seller.</p>
               </div>
               </div>
               <h3 className="mb-3">Flexibility</h3>
-              <p>The seller can update/add/delete the product data instantly.
-                Easy steps to sell your product via bidding.User can easily update their profile. </p>
+              <p>Sellers have the ability to instantly update, add, or delete product data. Selling your product through bidding is a simple process with easy-to-follow steps. Additionally, users can conveniently update their profiles .</p>
             </div>
           </div>
         </div>
