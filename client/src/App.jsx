@@ -7,7 +7,10 @@ import Contact from "./client/ContactPage/Contact";
 import Addlot from "./client/AddLot/Addlot";
 import Lot from "./client/LotPage/Lot";
 import Service from "./client/Services/Service";
+import UpdateLot from "./client/UpdateLots/UpdateLot";
 import Profile from "./client/Profile/Profile";
+import UpdateComponent from './client/UpdateLots/UpdateComponent';
+import BidStatus from './client/BidStatus/BidStatus';
 import {initialState , reducer } from "./client/Reducer/UseReducer";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import "../node_modules/bootstrap/dist/js/bootstrap.bundle";
@@ -29,17 +32,19 @@ const Routing = () => {
     <Switch>
         <Route exact path="/" component={Home} />
         <Route exact path="/addlot" component={Addlot} />
-        <Route exact path="/addlot" component={Addlot} />
-      
+        <Route exact path="/updatelot" component={UpdateLot} />
+        <Route exact path="/updateauction/:id" component={UpdateComponent} />
         
         <Route exact path="/lot" component={Lot} />
         <Route path="/lot/:keyword" component={Lot} />
+        <Route exact path="/bidstatus" component={BidStatus} />
         <Route exact path="/about" component={About} />
         <Route exact path="/contact" component={Contact} />
         <Route exact path="/service" component={Service} />
+        <Route exact path="/feedback" component={Feedback} />
 
         <Route exact path="/profile" component={Profile} />
-        <Route exact path="/feedback" component={Feedback} />
+        
         
         <Redirect to="/" />
       {/* Can use Error 404 Page  but redirect is better than that page */}
