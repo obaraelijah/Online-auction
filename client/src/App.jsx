@@ -4,6 +4,7 @@ import {initialState , reducer } from "./client/Reducer/UseReducer";
 
 import AOS from "aos";
 import "aos/dist/aos.css";
+import Footer from './client/Footer/Footer';
 AOS.init();
 
 
@@ -17,6 +18,7 @@ const App  = () => {
         <>
         <UserContext.Provider value={{ state, dispatch }}>
             <Navbar />
+            <Footer />
         </UserContext.Provider>
         </>
     );
