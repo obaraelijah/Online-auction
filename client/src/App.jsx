@@ -1,4 +1,5 @@
 import React, { createContext, useReducer } from 'react';
+import About from "./client/AboutPage/About";
 import Home from "./client/HomePage/Home";
 import Navbar from "./client/Navbar/Navbar";
 import Contact from "./client/ContactPage/Contact";
@@ -22,6 +23,7 @@ const Routing = () => {
     <Switch>
         <Route exact path="/" component={Home} />
 
+        <Route exact path="/about" component={About} />
         <Route exact path="/contact" component={Contact} />
         
         <Redirect to="/" />
