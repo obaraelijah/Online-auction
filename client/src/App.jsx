@@ -4,6 +4,7 @@ import Feedback from './client/Feedback/Feedback';
 import Home from "./client/HomePage/Home";
 import Navbar from "./client/Navbar/Navbar";
 import Contact from "./client/ContactPage/Contact";
+import Lot from "./client/LotPage/Lot";
 import Service from "./client/Services/Service";
 import Profile from "./client/Profile/Profile";
 import {initialState , reducer } from "./client/Reducer/UseReducer";
@@ -12,10 +13,11 @@ import "../node_modules/bootstrap/dist/js/bootstrap.bundle";
 import '../node_modules/font-awesome/css/font-awesome.min.css';
 import '../node_modules/font-awesome/css/font-awesome.min.css'; 
 import '@fortawesome/fontawesome-free/css/all.min.css';
-import AOS from "aos";
-import "aos/dist/aos.css";
 import Footer from './client/Footer/Footer';
 import { Switch, Route, Redirect } from "react-router-dom";
+
+import AOS from "aos";
+import "aos/dist/aos.css";
 AOS.init();
 
 //context api -> login and logout functionality
@@ -25,7 +27,9 @@ const Routing = () => {
     return (
     <Switch>
         <Route exact path="/" component={Home} />
-
+        
+        <Route exact path="/lot" component={Lot} />
+        <Route path="/lot/:keyword" component={Lot} />
         <Route exact path="/about" component={About} />
         <Route exact path="/contact" component={Contact} />
         <Route exact path="/service" component={Service} />
