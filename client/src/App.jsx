@@ -4,6 +4,7 @@ import Feedback from './client/Feedback/Feedback';
 import Home from "./client/HomePage/Home";
 import Navbar from "./client/Navbar/Navbar";
 import Contact from "./client/ContactPage/Contact";
+import Addlot from "./client/AddLot/Addlot";
 import Lot from "./client/LotPage/Lot";
 import Service from "./client/Services/Service";
 import Profile from "./client/Profile/Profile";
@@ -27,6 +28,9 @@ const Routing = () => {
     return (
     <Switch>
         <Route exact path="/" component={Home} />
+        <Route exact path="/addlot" component={Addlot} />
+        <Route exact path="/addlot" component={Addlot} />
+      
         
         <Route exact path="/lot" component={Lot} />
         <Route path="/lot/:keyword" component={Lot} />
