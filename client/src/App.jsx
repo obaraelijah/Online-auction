@@ -1,4 +1,5 @@
 import React, { createContext, useReducer } from 'react';
+import Home from "./client/HomePage/Home";
 import Navbar from "./client/Navbar/Navbar";
 import {initialState , reducer } from "./client/Reducer/UseReducer";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
@@ -18,9 +19,7 @@ export const UserContext = createContext();
 const Routing = () => {
     return (
     <Switch>
-        
-  
-        <Redirect to="/" />
+        <Route exact path="/" component={Home} />
     </Switch>
     )
 };
