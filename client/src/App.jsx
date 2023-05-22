@@ -1,5 +1,6 @@
 import React, { createContext, useReducer } from 'react';
 import About from "./client/AboutPage/About";
+import Feedback from './client/Feedback/Feedback';
 import Home from "./client/HomePage/Home";
 import Navbar from "./client/Navbar/Navbar";
 import Contact from "./client/ContactPage/Contact";
@@ -28,6 +29,7 @@ const Routing = () => {
         <Route exact path="/contact" component={Contact} />
 
         <Route exact path="/profile" component={Profile} />
+        <Route exact path="/feedback" component={Feedback} />
         
         <Redirect to="/" />
       {/* Can use Error 404 Page  but redirect is better than that page */}
