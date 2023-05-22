@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useEffect } from 'react';
 import {useSelector , useDispatch} from "react-redux";
-import Loader from '../Loader/Loader';
 import { useAlert } from 'react-alert';
 import MetaData from '../MetaData/MetaData';
 import {clearErrors , createProduct} from "../../actions/productAction";
