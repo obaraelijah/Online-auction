@@ -3,6 +3,7 @@ import About from "./client/AboutPage/About";
 import Home from "./client/HomePage/Home";
 import Navbar from "./client/Navbar/Navbar";
 import Contact from "./client/ContactPage/Contact";
+import Profile from "./client/Profile/Profile";
 import {initialState , reducer } from "./client/Reducer/UseReducer";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import "../node_modules/bootstrap/dist/js/bootstrap.bundle";
@@ -25,6 +26,8 @@ const Routing = () => {
 
         <Route exact path="/about" component={About} />
         <Route exact path="/contact" component={Contact} />
+
+        <Route exact path="/profile" component={Profile} />
         
         <Redirect to="/" />
       {/* Can use Error 404 Page  but redirect is better than that page */}
