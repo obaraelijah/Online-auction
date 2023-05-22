@@ -4,6 +4,7 @@ import Feedback from './client/Feedback/Feedback';
 import Home from "./client/HomePage/Home";
 import Navbar from "./client/Navbar/Navbar";
 import Contact from "./client/ContactPage/Contact";
+import Service from "./client/Services/Service";
 import Profile from "./client/Profile/Profile";
 import {initialState , reducer } from "./client/Reducer/UseReducer";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
@@ -27,6 +28,7 @@ const Routing = () => {
 
         <Route exact path="/about" component={About} />
         <Route exact path="/contact" component={Contact} />
+        <Route exact path="/service" component={Service} />
 
         <Route exact path="/profile" component={Profile} />
         <Route exact path="/feedback" component={Feedback} />
