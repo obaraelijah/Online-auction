@@ -106,21 +106,18 @@ const userContact = async () => {
 
     const [thumbsSwiper , setThumbsSwiper] = useState(null);
 
-    const slides = []
+  
 
-{product.images &&  product.images.map((item , i) => (
-    // element to push
-    slides.push(
-        <SwiperSlide key = {`slide-${i}`} tag="li">
-           <div className="single-prd-item">
-                           <img className="img-fluid"
-                            key={item.url}
-                            src={item.url}
-                             alt={`${i} Slide`}/>
-                       </div>
-        </SwiperSlide>
-    )
-    ))}
+    const slides = product.images && product.images.map((item, i) => (
+      <SwiperSlide key={`slide-${i}`} tag="li">
+        <div className="single-prd-item">
+          <img className="img-fluid" key={item.url} src={item.url} alt={`${i} Slide`} />
+        </div>
+      </SwiperSlide>
+    ));
+    
+    // Usage: {slides}
+    
 
 
     // FOR PAYMENT
@@ -162,7 +159,7 @@ const userContact = async () => {
 
     // }
 
-    const thumbs = []
+  
 
     // for( let i = 0 ; i< 5 ; i+=1){
         //  thumbs.push(
@@ -174,20 +171,13 @@ const userContact = async () => {
         //  );
 
     // }
-    {product.images &&  product.images.map((item , i) => (
-
-        thumbs.push(
-            <SwiperSlide key = {`thumb-${i}`} tag="li" style={{listStyle: 'none'}}>
-                   <div className='multiproduct-itm'>
-                   <img className="img-fluid"
-                            key={item.url}
-                            src={item.url}
-                             alt={`${i} Slide`}/>
-                               </div>
-            </SwiperSlide>
-        )
-
-        ))}
+    const thumbs = product.images && product.images.map((item, i) => (
+      <SwiperSlide key={`thumb-${i}`} tag="li" style={{ listStyle: 'none' }}>
+        <div className='multiproduct-itm'>
+          <img className="img-fluid" key={item.url} src={item.url} alt={`${i} Slide`} />
+        </div>
+      </SwiperSlide>
+    ));
 
 // const sellerInfo= product;
 // const {email, name  , phone ,_id } = product.seller;
@@ -685,7 +675,7 @@ MdOutlinePayment/> <span>Connect with Stripe </span></button>
 { showButton  && (
 <div className='stripecls'>
 <StripeCheckout
-        stripeKey="sk_test_51LL0IADsWaEgpPYfzQZv4UklRbb57DFSxVm9L0QoJeWsIlBLpndsouzZE1sSm2kmJ8ynoD7UUfIi7mmSS2RsZEDQ00BrJ0yZKl"
+        stripeKey="pk_test_51KVzMySFWvR6XE1YKfGlTIsCD9C6Iwr2hy4H5ZkeddvgmJwUAGOJcOvWE6FeFh2qkANlnXD6f10wdZuuBHi0CoCj00s25fgrYw"
         token={makePayment}
         name="Buy here!!"
         amount={winStatus.bid}
@@ -773,7 +763,7 @@ MdOutlinePayment/> <span>Connect with Stripe </span></button>
                   <tr>
                     <th scope="col">Bidder Name</th>
                     <th scope="col">Bidder Email</th>
-                    <th scope="col">Bid Amount</th>
+                    <th scope="col">Bid Ammount</th>
                     <th scope="col">Bid Status</th>
                   </tr>
                 </thead>
