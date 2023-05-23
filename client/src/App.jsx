@@ -18,6 +18,7 @@ import '../node_modules/font-awesome/css/font-awesome.min.css';
 import '../node_modules/font-awesome/css/font-awesome.min.css'; 
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import Footer from './client/Footer/Footer';
+import Signup from "./client/SignUp/Signup";
 import { Switch, Route, Redirect } from "react-router-dom";
 
 import AOS from "aos";
@@ -44,6 +45,8 @@ const Routing = () => {
         <Route exact path="/feedback" component={Feedback} />
 
         <Route exact path="/profile" component={Profile} />
+        <Route exact path="/signup" component={Signup} />
+        <Route exact path="/signin" component={Signup} />
         
         
         <Redirect to="/" />
