@@ -18,7 +18,6 @@ const Service = () => {
 
      <section id='header1' className='d-flex align-items-center'>
 
-
 <div className="container-fluid nav_bg">
   <div className='row firstele'>
     <div className='col-10 mx-auto'>
@@ -45,9 +44,7 @@ const Service = () => {
 
 {/* Conponent 2 */}
 
-
 <section id='header1' className='d-flex align-items-center'>
-
 
 <div className="container-fluid nav_bg">
   <div className='row'>
@@ -73,17 +70,7 @@ const Service = () => {
   </div>
 </div>
 
-
 </section>
-
-
-
-
-
-
-
-{/* My Service Section */}
-
 
 <div className='row'>
     <div className='col-10 mx-auto'>
@@ -144,8 +131,6 @@ seller and bidder will be there.</p>
     </div>
     </div>
     </div>
-
-
      
   </>);
 };

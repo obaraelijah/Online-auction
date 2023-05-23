@@ -62,9 +62,6 @@ const {state, dispatch} = useContext(UserContext);
 
       setFlag(!flag);
     }
-
-
-
   }
   // SignUp page End
 
@@ -246,9 +243,6 @@ const loginUser =async (e) =>{
           </div>
         </div>
       </div>
-
-
-
     </>
   );
 };
