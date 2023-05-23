@@ -6,8 +6,6 @@ import {AiFillLinkedin} from 'react-icons/ai';
 import {FiTwitter , FiFacebook , FiInstagram , FiMail} from 'react-icons/fi';
 import 'font-awesome/css/font-awesome.min.css';
 
-
-
 const Footer = () => {
 
   const [userData, setUserData] = useState({ name: "", email: "", subject: "", message: "" });

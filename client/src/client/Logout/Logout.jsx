@@ -2,9 +2,7 @@ import React, { useEffect  , useContext } from 'react'
 import { useHistory } from 'react-router-dom';
 import  {UserContext} from '../../App';
 
-
 const Logout = () => {
-
   const {state, dispatch} = useContext(UserContext);
 
 // CLICKED ON LOGOUT -> CALL FUNCTION WHICH DELETES CURRENT COOKIES -> IF COOKIES NOT EXPIRED
@@ -39,8 +37,6 @@ useEffect(() => {
 
 
 });
-
-
 
   return (
     <>

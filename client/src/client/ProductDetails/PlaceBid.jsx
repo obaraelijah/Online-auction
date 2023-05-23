@@ -56,9 +56,6 @@ console.log(myForm);
 
   return (
     <>
-
-{/* onSubmit={searchSubmitHandler} */}
-{/* <h1>place Bid called</h1> */}
 <form className='searchBox' onSubmit={bidSubmitHandler}>
 <div className='placeBid'>
 						<div className="product_count">

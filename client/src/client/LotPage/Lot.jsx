@@ -27,7 +27,6 @@ const {loading , error , products , productCount , resultPerPage} = useSelector(
   (state) => state.products
     );
 
-
     const keyword = match.params.keyword; 
 
     const setCurrentPageNo = (e) => {
@@ -53,9 +52,6 @@ dispatch(getProduct(keyword , currentPage , price , category));
 }, [dispatch , keyword , currentPage , price , category , alert , error]);
 
 
-
-
-
   return (
      <>{loading ? (<Loader/>) :(
   <>
@@ -73,8 +69,6 @@ dispatch(getProduct(keyword , currentPage , price , category));
           <h2>Auctions</h2>
           <p>Start Bidding Now!</p>
         </div>
-
-
 
       <section className="lots-section">
         <div className="lots-list-content lots-container">
@@ -214,10 +208,6 @@ dispatch(getProduct(keyword , currentPage , price , category));
           </section>
         </div>
       </section>
-
-
-
-
 </div>
           </div>
           </div>

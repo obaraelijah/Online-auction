@@ -23,8 +23,6 @@ const Profile = () => {
   const [newPassword , setNewPassword] = useState({});
   const [confirmPassword , setconfirmPassword] = useState({});
 
-
-
   const callProfilePage = async () => {
     
 try {
@@ -92,11 +90,7 @@ try {
 
   }
 
-
-
 };
-
-
 
 // Update Password
 const passwordChangeFun = async () => {
@@ -124,18 +118,10 @@ const passwordChangeFun = async () => {
 
   }
 
-
-
 };
-
-
 
   return (<>
     <MetaData title="BEST BID"></MetaData>
-
-{/* <h1>Hello World</h1> */}
-
-
           <div className=" profilecls" data-aos="fade-up" data-aos-delay="400">
         <div className='row'>
           <div className='col-10 mx-auto'>

@@ -83,9 +83,6 @@ if(state){
               
             </ul>
           </li>
-
-
-
         <li className="nav-item px-3 mx-auto licls">
           <NavLink activeClassName = 'menu_active' excat className="nav-link" to="/lot">Bid & Buy</NavLink>
         </li>
