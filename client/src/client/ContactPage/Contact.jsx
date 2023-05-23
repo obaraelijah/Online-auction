@@ -1,194 +1,244 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
+import { HiLocationMarker } from "react-icons/hi";
+import { MdEmail } from "react-icons/md";
+import MetaData from "../MetaData/MetaData";
 import "./contactstyle.scss";
-import MetaData from '../MetaData/MetaData';
-import { HiLocationMarker } from 'react-icons/hi';
-import { MdEmail} from 'react-icons/md';
-
-
-
 
 const Contact = () => {
-  // contact page start
+   // contact page start
 
-  const [userData, setUserData] = useState({ name: "", email: "", subject: "", message: "" });
+   const [userData, setUserData] = useState({
+      name: "",
+      email: "",
+      subject: "",
+      message: "",
+   });
 
-  const userContact = async () => {
+   const userContact = async () => {
+      try {
+         const res = await fetch("/getdata", {
+            method: "GET",
+            headers: {
+               "Content-Type": "application/json",
+            },
+         });
+         const data = await res.json();
+         console.log(data);
+         setUserData({ ...userData, name: data.name, email: data.email });
+         // console.log(`data send to backend`);
 
-    try {
-      const res = await fetch('/getdata', {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json"
-        },
-      });
-      const data = await res.json();
-      console.log(data);
-      setUserData({ ...userData, name: data.name, email: data.email });
-      // console.log(`data send to backend`);
-
-      if (!res.status === 200) {
-        const error = new Error(res.error);
-        throw error;
-
+         if (!res.status === 200) {
+            const error = new Error(res.error);
+            throw error;
+         }
+      } catch (err) {
+         console.log(err);
       }
-    } catch (err) {
-      console.log(err);
-    }
+   };
+   /*  USEEFFECT HOOK -> RUN ONLY ONE TIME WHEN FUNCTION IS CALLED -> ARRAY DENOTES -> NO OF TYMS USEEFFECT CALLLS -> callProfilePage is async function -> so we can not use it inside useEffect */
 
-  }
-  /*  USEEFFECT HOOK -> RUN ONLY ONE TIME WHEN FUNCTION IS CALLED -> ARRAY DENOTES -> NO OF TYMS USEEFFECT CALLLS -> callProfilePage is async function -> so we can not use it inside useEffect */
- 
-  useEffect(() => {
+   useEffect(() => {
+      userContact();
+   }, []);
 
-    userContact();
-  }, []);
+   // for storing data in states
+   const handleInputs = (e) => {
+      const name = e.target.name;
+      const value = e.target.value;
 
-  // for storing data in states
-  const handleInputs = (e) => {
-    const name = e.target.name;
-    const value =  e.target.value;
+      setUserData({ ...userData, [name]: value });
+   };
+   // send data to backend
 
-    setUserData({ ...userData, [name]: value });
+   const contactForm = async (e) => {
+      e.preventDefault();
 
-  }
-  // send data to backend
+      const { name, email, subject, message } = userData;
+      const res = await fetch("/contact", {
+         method: "POST",
+         headers: {
+            "Content-Type": "application/json",
+         },
+         body: JSON.stringify({
+            name,
+            email,
+            subject,
+            message,
+         }),
+      });
 
-  const contactForm = async (e) => {
-    e.preventDefault();
+      const data = await res.json();
 
-    const { name, email, subject, message } = userData;
-    const res = await fetch('/contact', {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        name, email, subject, message
-      })
-    });
+      if (!data) {
+         console.log(`message not send `);
+      } else {
+         alert("Message Sent");
+         setUserData({ ...userData, message: "", subject: "" });
+      }
+   };
 
-    const data = await res.json();
+   //end of CP
 
-    if (!data) {
-      console.log(`message not send `);
-    } else {
-      alert("Message Sent");
-      setUserData({...userData , message: "" , subject: ""});
-    }
+   return (
+      <>
+         <MetaData title="Contact Us"></MetaData>
 
-
-  }
-
-  //end of CP
-
-  return (
-    <>
-    <MetaData title="Contact Us"></MetaData>
-
-      <div className="container-fluid nav_bg contactpge">
-        <div className='row'>
-          <div className='col-10 mx-auto'>
-
-            <section className="contact contacttextt">
-              <div className="content" data-aos="flip-left" data-aos-delay="100">
-                <div className="section-title">
-                  <h2 font-color="#00bcd4" data-aos="fade-up" data-aos-delay="300">Contact Us</h2>
-                  <p data-aos="fade-up" data-aos-delay="400"> Contact Bestbid for any inquiries or questions. Submit your details along with your queries, and our team will assist you promptly. Happy bidding!!!</p>
-                </div>
-              </div>
-              {/* <div className='formcards'> */}
-              <div className="container ">
-                <div className="contactInfo col-xl-6">
-
-                  <div className="box" data-aos="fade-up-right" data-aos-delay="400">
-                    <div className="step">
-                      <div className="icon"><HiLocationMarker/>
-                      </div>
-                      <div className="text">
-                        <h3>Address</h3>
-                        <p>43200, Westlands Road, Nairobi,
-                        </p>
-                      </div>
-                    </div>
-                   
-                  </div>
-                  <div className="box" data-aos="fade-up-left" data-aos-delay="500">
-                    <div className="step">
-                      <div className="icon"><i className="fa fa-phone" aria-hidden="true"></i></div>
-                      <div className="text">
-                        <h3>Phone</h3>
-                        <p>+254 712345678</p>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="box" data-aos="zoom-in-left" data-aos-delay="600">
-                    <div className="step">
-                      <div className="icon"><MdEmail/></div>
-                      <div className="text">
-                        <h3>Email</h3>
-                        <p>bestbid@gmail.com</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="contactForm col-xl-6" >
-
-                  {/* Contact Form Here */}
-                  <div className="card p-4">
-                    <form  method="POST" className="react-email-form">
-                      <div className="row gy-4">
-
-                        <div className="col-md-6">
-                          <input type="text" className="form-control"
-                            name="name"
-                            value={userData.name}
-                            onChange={handleInputs}
-                            placeholder="Your Name" required />
+         <div className="container-fluid nav_bg contactpge">
+            <div className="row">
+               <div className="col-10 mx-auto">
+                  <section className="contact contacttextt">
+                     <div
+                        className="content"
+                        data-aos="flip-left"
+                        data-aos-delay="100"
+                     >
+                        <div className="section-title">
+                           <h2
+                              font-color="#00bcd4"
+                              data-aos="fade-up"
+                              data-aos-delay="300"
+                           >
+                              Contact Us
+                           </h2>
+                           <p data-aos="fade-up" data-aos-delay="400">
+                              {" "}
+                              Contact Bestbid for any inquiries or questions.
+                              Submit your details along with your queries, and
+                              our team will assist you promptly. Happy
+                              bidding!!!
+                           </p>
                         </div>
-
-                        <div className="col-md-6 ">
-                          <input type="email" className="form-control" name="email"
-                            value={userData.email}
-                            onChange={handleInputs}
-                            placeholder="Your Email" required />
+                     </div>
+                     {/* <div className='formcards'> */}
+                     <div className="container ">
+                        <div className="contactInfo col-xl-6">
+                           <div
+                              className="box"
+                              data-aos="fade-up-right"
+                              data-aos-delay="400"
+                           >
+                              <div className="step">
+                                 <div className="icon">
+                                    <HiLocationMarker />
+                                 </div>
+                                 <div className="text">
+                                    <h3>Address</h3>
+                                    <p>43200, Westlands Road, Nairobi,</p>
+                                 </div>
+                              </div>
+                           </div>
+                           <div
+                              className="box"
+                              data-aos="fade-up-left"
+                              data-aos-delay="500"
+                           >
+                              <div className="step">
+                                 <div className="icon">
+                                    <i
+                                       className="fa fa-phone"
+                                       aria-hidden="true"
+                                    ></i>
+                                 </div>
+                                 <div className="text">
+                                    <h3>Phone</h3>
+                                    <p>+254 712345678</p>
+                                 </div>
+                              </div>
+                           </div>
+                           <div
+                              className="box"
+                              data-aos="zoom-in-left"
+                              data-aos-delay="600"
+                           >
+                              <div className="step">
+                                 <div className="icon">
+                                    <MdEmail />
+                                 </div>
+                                 <div className="text">
+                                    <h3>Email</h3>
+                                    <p>bestbid@gmail.com</p>
+                                 </div>
+                              </div>
+                           </div>
                         </div>
+                        <div className="contactForm col-xl-6">
+                           {/* Contact Form Here */}
+                           <div className="card p-4">
+                              <form method="POST" className="react-email-form">
+                                 <div className="row gy-4">
+                                    <div className="col-md-6">
+                                       <input
+                                          type="text"
+                                          className="form-control"
+                                          name="name"
+                                          value={userData.name}
+                                          onChange={handleInputs}
+                                          placeholder="Your Name"
+                                          required
+                                       />
+                                    </div>
 
-                        <div className="col-md-12">
-                          <input type="text" className="form-control" name="subject"
-                            value={userData.subject}
-                            onChange={handleInputs}
-                            placeholder="Subject" required />
+                                    <div className="col-md-6 ">
+                                       <input
+                                          type="email"
+                                          className="form-control"
+                                          name="email"
+                                          value={userData.email}
+                                          onChange={handleInputs}
+                                          placeholder="Your Email"
+                                          required
+                                       />
+                                    </div>
+
+                                    <div className="col-md-12">
+                                       <input
+                                          type="text"
+                                          className="form-control"
+                                          name="subject"
+                                          value={userData.subject}
+                                          onChange={handleInputs}
+                                          placeholder="Subject"
+                                          required
+                                       />
+                                    </div>
+
+                                    <div className="col-md-12">
+                                       <textarea
+                                          className="form-control"
+                                          name="message"
+                                          rows="6"
+                                          value={userData.message}
+                                          onChange={handleInputs}
+                                          placeholder="Message"
+                                          required
+                                       ></textarea>
+                                    </div>
+
+                                    <div className="col-md-12 text-center">
+                                       <div className="loading">Loading</div>
+                                       <div className="error-message"></div>
+                                       <div className="sent-message">
+                                          Your message has been sent. Thank you!
+                                       </div>
+
+                                       <button
+                                          type="submit"
+                                          onClick={contactForm}
+                                       >
+                                          SUBMIT
+                                       </button>
+                                    </div>
+                                 </div>
+                              </form>
+                           </div>
                         </div>
-
-                        <div className="col-md-12">
-                          <textarea className="form-control" name="message" rows="6"
-                            value={userData.message}
-                            onChange={handleInputs}
-                            placeholder="Message" required></textarea>
-                        </div>
-
-                        <div className="col-md-12 text-center">
-                          <div className="loading">Loading</div>
-                          <div className="error-message"></div>
-                          <div className="sent-message">Your message has been sent. Thank you!</div>
-
-                          <button type="submit" onClick={contactForm}>SUBMIT</button>
-                        </div>
-
-                      </div>
-                    </form>
-                  </div>
-
-                </div>
-
-              </div>
-
-            </section>
-          </div>
-        </div>
-      </div>
-
-    </>);
+                     </div>
+                  </section>
+               </div>
+            </div>
+         </div>
+      </>
+   );
 };
 
 export default Contact;
