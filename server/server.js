@@ -13,6 +13,12 @@ import productsRouter from './Routes/productsRouter.js';
 
 import errorManager from './middleware/error.js';
 
+import stripe from 'stripe';
+import { v4 as uuid } from "uuid";
+const stripeInstance = stripe(process.env.STRIPE_API_KEY);
+
+
+
 dotenv.config()
 
 const app = express();
@@ -44,6 +50,42 @@ app.use(productsRouter);
 
 //middleware for errors
 app.use(errorManager);
+
+
+//stripe payment
+app.post('/payment', (req, res) => {
+  const { items, token } = req.body;
+  console.log('PRODUCT', items);
+  console.log('PRICE', items.price);
+  const idempotencyKey = uuidv4(); // Generate a unique key for idempotency
+
+  return stripe.customers
+    .create({
+      email: token.email,
+      source: token.id,
+    })
+    .then((customer) => {
+      return stripe.charges.create(
+        {
+          amount: items.price,
+          currency: 'Ksh.',
+          customer: customer.id,
+          receipt_email: token.email,
+          description: `Buy ${items.name}`,
+          shipping: {
+            name: token.card.name,
+            address: {
+              country: token.card.address_country,
+            },
+          },
+        },
+        { idempotency_key: idempotencyKey } // Use the generated key for idempotency
+      );
+    })
+    .then((result) => res.status(200).json(result))
+    .catch((err) => console.log(err));
+});
+
 
 
 //db connection
