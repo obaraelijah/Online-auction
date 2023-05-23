@@ -52,7 +52,7 @@ const Routing = () => {
       <Route exact path="/signin" component={Signup} />
       <Route exact path="/product/:id" component={ProductDetails} />
         
-        <Redirect to="/" />
+      <Redirect to="/" />
       {/* Can use Error 404 Page  but redirect is better than that page */}
     </Switch>
     )
