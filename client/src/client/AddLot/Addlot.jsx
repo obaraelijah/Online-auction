@@ -31,9 +31,6 @@ const [images, setImages] = useState([]);
 const [endDate , setEndDate] = useState("");
 const [endTime, setEndTime] = useState("");
 
-
-
- 
 useEffect(() => {
   
   if(error){
@@ -63,8 +60,6 @@ myForm.set("description" , description);
 myForm.set("category" , category);
 myForm.set("startingBid" , price);
 myForm.set("bidEnd" , new Date(endDate + ' ' + endTime));
-// myForm.set("endTime" , endTime);
-// new Date(endDate + ' ' + endTime)
 
 images.forEach((image) => {
   myForm.append("images" , image);
@@ -91,8 +86,6 @@ if(reader.readyState === 2){
 }
 
   };
-
-
 
   reader.readAsDataURL(file);
 });

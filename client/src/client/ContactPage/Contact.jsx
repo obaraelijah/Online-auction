@@ -43,8 +43,6 @@ const Contact = () => {
     userContact();
   }, []);
 
-
-
   // for storing data in states
   const handleInputs = (e) => {
     const name = e.target.name;

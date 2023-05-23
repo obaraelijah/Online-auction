@@ -9,7 +9,6 @@ const Feedback = () => {
 
 	const [userData, setUserData] = useState({ name: "", email: "", subject: "", message: "" });
 
-
 	const userFeedback = async () => {
 
 		try {
@@ -28,8 +27,7 @@ const Feedback = () => {
 			const error = new Error(res.error);
 			throw error;
 	
-		  }
-	
+		  }	
 	
 		} catch (err) {
 		  console.log(err);
@@ -43,8 +41,6 @@ const Feedback = () => {
 		userFeedback();
 	  }, []);
 	
-	
-
 
 // for storing data in states
 const handleInputs = (e) => {
@@ -54,9 +50,6 @@ const handleInputs = (e) => {
     setUserData({ ...userData, [name]: value });
 
   }
-
-
-
 
   // SEND DATA TO BACKEND
 
@@ -85,8 +78,6 @@ const handleInputs = (e) => {
 
 
   }
-
-
 
   return (
       <>
