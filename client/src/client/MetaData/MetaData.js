@@ -1,15 +1,15 @@
-import React from 'react';
+import React from "react";
 import Helmet from "react-helmet";
 
 // Helmet -> To manage changes at document head
 const MetaData = ({ title }) => {
-  return (
-    <>
-        <Helmet>
+   return (
+      <>
+         <Helmet>
             <title>{title}</title>
-        </Helmet>
-    </>
-  )
-}
+         </Helmet>
+      </>
+   );
+};
 
-export default MetaData
+export default MetaData;
