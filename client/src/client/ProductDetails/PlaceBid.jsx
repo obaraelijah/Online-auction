@@ -70,7 +70,7 @@ console.log(myForm);
                             maxlength="12" 
                             title="Quantity:" 
                             className="input-text qty"
-                            onChange={(e) => setAmount(e.target.value)}
+                                        onChange={(e) => setAmount(e.target.value)}
                             required
                             />
 							

@@ -370,7 +370,7 @@ console.log(showButton);
 				<div className="col-lg-5 offset-lg-1">
 					<div className="s_product_text">
 						<h3>{product.itemName}</h3>
-						<h2>{`₹ ${product.startingBid}`}</h2>
+						<h2>{`Ksh. ${product.startingBid}`}</h2>
 						<ul className="list">
 							<li><a className="active" href="#"><span>Category</span> : {product.category}</a></li>
 

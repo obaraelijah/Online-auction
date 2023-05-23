@@ -120,7 +120,7 @@ const SellerProduct = ({product}) => {
               </h5>
               <div className="product_info">
                 <h5>
-                  <span>{`₹${product.startingBid}`}</span> 
+                  <span>{`Ksh.${product.startingBid}`}</span> 
                 </h5>
                 <div className="star_container">
                 <h5>
