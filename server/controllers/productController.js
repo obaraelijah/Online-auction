@@ -210,7 +210,7 @@ export const deleteProduct = catchAsyncErrors(async (req, res, next) => {
       req.userID = rootUser._id;
     } catch (err) {
       console.log(`error token verification`);
-      res.status(401).send("Unauthorized: No token provided");
+      return res.status(401).send("Unauthorized: No token provided");
     }
   
     let myproducts = await Product.find({ "bids.bidder": req.userID })
