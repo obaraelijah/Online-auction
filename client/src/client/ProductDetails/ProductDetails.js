@@ -418,34 +418,6 @@ console.log(showButton);
 	</div>
 
 
-
-{/* 
-  {userData._id === winStatus.bidder._id &&
-  <div className="row">
-                 <div className="alert alert-primary" role="alert">
-  <MdVerified/>  You Won. Congratulations!
-</div>
-
-{ showButton  && (
-<div className='stripecls'>
-<StripeCheckout
-        stripeKey="pk_test_51KVzMySFWvR6XE1YKfGlTIsCD9C6Iwr2hy4H5ZkeddvgmJwUAGOJcOvWE6FeFh2qkANlnXD6f10wdZuuBHi0CoCj00s25fgrYw"
-        token={makePayment}
-        name="Buy here!!"
-        amount={winStatus.bid}
-        shippingAddress
-        billingAddress
-        >
-<button class="button" ><
-MdOutlinePayment/> <span>Connect with Stripe </span></button>
-</StripeCheckout>
-</div>
-)
-}
-                 </div> } */}
-
-{/* PRODUCT ADDITIONAL INFORMATION */}
-
 <div className='product_info'>
 <div className='row'>
           <div className='col-10 mx-auto'>

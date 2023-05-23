@@ -15,19 +15,11 @@ import errorManager from './middleware/error.js';
 
 import stripe from 'stripe';
 import { v4 as uuid } from "uuid";
-const stripeInstance = stripe(process.env.STRIPE_API_KEY);
-
-
-
-dotenv.config()
-
 const app = express();
 
-app.use(express.json({ limit: "50mb" }))
-app.use(cookieParser());
-app.use(bodyParser.urlencoded({ limit: "50mb", extended: true }));
-app.use(fileUpload());
-app.use(cors());
+const stripeInstance = stripe(process.env.STRIPE_API_KEY);
+
+dotenv.config()
 
 
 //cloudinary config
@@ -36,6 +28,13 @@ cloudinary.config({
   api_key : process.env.CLOUDINARY_API_KEY,
   api_secret: process.env.CLOUDINARY_API_SECRET
 });
+
+
+app.use(express.json({ limit: "50mb" }))
+app.use(cookieParser());
+app.use(bodyParser.urlencoded({ limit: "50mb", extended: true }));
+app.use(fileUpload());
+app.use(cors());
 
 // Handling uncaught exception
 process.on("uncaughtException" , err => {
