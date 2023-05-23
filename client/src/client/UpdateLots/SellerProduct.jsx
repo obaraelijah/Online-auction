@@ -11,16 +11,13 @@ import { useAlert } from 'react-alert';
 import MetaData from '../MetaData/MetaData';
 import { DELETE_PRODUCT_RESET } from '../../constants/productConstants';
 
-
-
 const SellerProduct = ({product}) => {
 
   const alert = useAlert();
   const dispatch = useDispatch();
 
   const history = useHistory();
-
-  
+ 
   const {loading , error , isDeleted} = useSelector(
     (state) => state.deleteProduct
     );
@@ -96,8 +93,6 @@ const SellerProduct = ({product}) => {
     var now = new Date().getTime();
     var dateEnd = new Date(product.bidEnd);
     
-
-
   return (
   
     <>{loading ? (<Loader/>) :(

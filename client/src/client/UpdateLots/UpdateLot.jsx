@@ -8,16 +8,11 @@ import "./updateLotstyle.scss";
 import "../HomePage/homestyle.scss";
 
 const UpdateLot = () => {
-
-
   const alert = useAlert();
   const dispatch = useDispatch();
   const {sellerproducts , loading , error } = useSelector(
 (state) => state.sellerproducts
   );
-
-
-
   useEffect(() => {
   
 

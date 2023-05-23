@@ -36,9 +36,6 @@ const UpdateComponent = ({match}) => {
 
     const productId = match.params.id;
  
-
-
-
     useEffect(() => {
     
     if(product && product._id != productId){
@@ -54,16 +51,11 @@ const UpdateComponent = ({match}) => {
 
 
     }
-
-
-
     if(error){
         alert.error(error);
     dispatch(clearErrors());
     }
-    
-
-    
+        
     if(updateError){
         alert.error(updateError);
     dispatch(clearErrors());
@@ -78,8 +70,6 @@ const UpdateComponent = ({match}) => {
 
     
     }, [dispatch  , alert , error , isUpdated , productId , product , updateError]);
-
-
 
     const updateProductSubmitHandler = (e) => {
     e.preventDefault();

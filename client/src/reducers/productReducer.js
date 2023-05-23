@@ -97,13 +97,11 @@ export const productDetailsReducer = (state = { product: {} }, action) =>{
     
     };
 
-
 //new producct request
 //  "" success
 // create product
 // new product fail
 // new product reset
-
     export const newProductReducer = (state = { product: {} }, action) =>{
 
         switch (action.type) {
