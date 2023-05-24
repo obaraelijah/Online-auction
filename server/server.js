@@ -6,12 +6,18 @@ import cookieParser from 'cookie-parser';
 import cors from 'cors';
 import fileUpload from 'express-fileupload';
 import bodyParser from 'body-parser';
+
+
+import authRouter from './Routes/authRouter.js';
+import productsRouter from './Routes/productsRouter.js';
+
+import errorManager from './middleware/error.js';
+
 import stripe from 'stripe';
 import { v4 as uuid } from "uuid";
 const app = express();
 
 const stripeInstance = stripe(process.env.STRIPE_API_KEY);
-
 
 dotenv.config()
 
@@ -24,7 +30,7 @@ cloudinary.config({
 });
 
 
-app.use(express.json({ limit: "50mb" }));
+app.use(express.json({ limit: "50mb" }))
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({ limit: "50mb", extended: true }));
 app.use(fileUpload());
@@ -37,12 +43,20 @@ process.on("uncaughtException" , err => {
 
 });
 
+// Routers
+app.use(authRouter);
+app.use(productsRouter);
+
+//middleware for errors
+app.use(errorManager);
+
+
 //stripe payment
 app.post('/payment', (req, res) => {
   const { items, token } = req.body;
   console.log('PRODUCT', items);
   console.log('PRICE', items.price);
-  const idempotencyKey = uuid(); // Generate a unique key for idempotency
+  const idempotencyKey = uuidv4(); // Generate a unique key for idempotency
 
   return stripe.customers
     .create({
@@ -100,4 +114,4 @@ process.on("unhandledRejection" , err => {
   server.close(() => {
       process.exit(1);
   });
-});
+})

@@ -40,7 +40,7 @@ const PlaceBid = ({ product }) => {
                console.log(response);
             });
       } else {
-         console.log(`ammount is invalid`);
+         console.log(`amount is invalid`);
          //   history.push("/lot");
          alert.error(`Bid must be greater than initial `);
       }

@@ -113,7 +113,7 @@ const ProductDetails = ({ match }) => {
 
    // FOR PAYMENT
 
-   const makePayment = (token) => {
+   const makePayment = async (token) => {
       const body = {
          token,
          items,
@@ -122,41 +122,21 @@ const ProductDetails = ({ match }) => {
          "Content-Type": "application/json",
       };
 
-      return fetch(`/payment`, {
-         method: "POST",
-         headers,
-         body: JSON.stringify(body),
-      })
-         .then((response) => {
-            console.log("RESPONSE", response);
-            const { status } = response;
-            console.log("STATUS", status);
-            setShowButton(false);
-         })
-         .catch((error) => console.log(error));
+      try {
+         const response = await fetch(`/payment`, {
+            method: "POST",
+            headers,
+            body: JSON.stringify(body),
+         });
+         console.log("RESPONSE", response);
+         const { status } = response;
+         console.log("STATUS", status);
+         setShowButton(false);
+      } catch (error) {
+         return console.log(error);
+      }
    };
 
-   // for( let i = 0 ; i< 5 ; i+=1){
-   //      slides.push(
-   //          <SwiperSlide key = {`slide-${i}`} tag="li">
-   //             <div className="single-prd-item">
-   //                             <img className="img-fluid" src={Img} alt="Product Image"/>
-   //                         </div>
-   //          </SwiperSlide>
-   //      );
-
-   // }
-
-   // for( let i = 0 ; i< 5 ; i+=1){
-   //  thumbs.push(
-   //      <SwiperSlide key = {`thumb-${i}`} tag="li" style={{listStyle: 'none'}}>
-   //             <div className='multiproduct-itm'>
-   //                         <img  className='coursel-img2' src={Img2} alt="Product2 Image"/>
-   //                         </div>
-   //      </SwiperSlide>
-   //  );
-
-   // }
    const thumbs =
       product.images &&
       product.images.map((item, i) => (
@@ -171,18 +151,6 @@ const ProductDetails = ({ match }) => {
             </div>
          </SwiperSlide>
       ));
-
-   // const sellerInfo= product;
-   // const {email, name  , phone ,_id } = product.seller;
-   // let keys = product.keys(product)
-   // console.log(keys);
-   // console.log(product.seller);
-
-   // console.log(product.seller);
-   // {product.seller && product.seller.map((u) => console.log(u.name))}
-   // console.log()
-
-   // For Converting Into Time Format
    const year = new Date(product.bidEnd).getFullYear();
    const month = new Date(product.bidEnd).getMonth();
    const date = new Date(product.bidEnd).getDate();
@@ -257,12 +225,6 @@ const ProductDetails = ({ match }) => {
    // END DATE
    var dateEnd = new Date(product.bidEnd);
 
-   // Winner Announce --> Working
-   // console.log(winStatus);
-   // { `: ${dateEnd.getDate()}-${dateEnd.getMonth()}-${dateEnd.getFullYear()}       ${dateEnd.getHours()}:${dateEnd.getMinutes()}  `}
-
-   // console.log(sellerDetails.name);
-   // console.log(product.bidEnd)
 
    if (countdownDate > now) {
       console.log(`Auction Runnning`);
@@ -296,15 +258,6 @@ const ProductDetails = ({ match }) => {
                         <div className="row s_product_inner">
                            <div className="col-lg-6">
                               <div className="s_Product_carousel">
-                                 {/* <div className="single-prd-item">
-							<img className="img-fluid" src={Img} alt="Product Image"/>
-						</div>
-						<div className="single-prd-item">
-							<img className="img-fluid" src={Img} alt="Product Image"/>
-						</div>
-						<div className="single-prd-item">
-							<img className="img-fluid" src={Img} alt="Product Image"/>
-						</div> */}
                                  <div className="coursel-manage">
                                     <Swiper
                                        tag="section"
@@ -366,13 +319,6 @@ const ProductDetails = ({ match }) => {
                                     )}
                                  </ul>
                                  <p>{product.description}</p>
-
-                                 {/* {
-                          (countdownDate > now && userData._id !==sellerDetails._id ) ? 
-                        ( <PlaceBid product = {product}/>)
-                        :
-                        (  <h3>!   Auction Ended</h3>)
-                        } */}
                                  {/* TRY */}
 
                                  {countdownDate > now ? (
@@ -515,10 +461,6 @@ const ProductDetails = ({ match }) => {
                                                       Verfied by BestBid
                                                    </div>
                                                 </div>
-
-                                                {/* <div className="alert alert-primary" role="alert">
-  This is a success alert—check it out!
-</div> */}
                                              </div>
                                           </div>
                                           <div
@@ -553,11 +495,6 @@ const ProductDetails = ({ match }) => {
                                                    {product.itemName}
                                                 </div>
                                              </div>
-
-                                             {/* <div className="row">
-                   <div className="col-lg-3 col-md-4 label">Description</div>
-                   <div className="col-lg-9 col-md-8">{product.description}</div>
-                 </div> */}
 
                                              <div className="row">
                                                 <div className="col-lg-3 col-md-4 label">
@@ -652,17 +589,12 @@ const ProductDetails = ({ match }) => {
 
                                                 <div className="row">
                                                    <div className="col-lg-3 col-md-4 label ">
-                                                      Winning Ammount
+                                                      Winning Amount
                                                    </div>
                                                    <div className="col-lg-9 col-md-8">
                                                       {winStatus.bid}
                                                    </div>
                                                 </div>
-
-                                                {/* <div className="row">
-                  <div className="col-lg-3 col-md-4 label ">Winner Email</div>
-                  <div className="col-lg-9 col-md-8">{winStatus.bidder._id}</div>
-                </div> */}
                                                 {userData._id ===
                                                    winStatus.bidder._id && (
                                                    <div className="row">
@@ -677,7 +609,7 @@ const ProductDetails = ({ match }) => {
                                                       {showButton && (
                                                          <div className="stripecls">
                                                             <StripeCheckout
-                                                               stripeKey="pk_test_51KVzMySFWvR6XE1YKfGlTIsCD9C6Iwr2hy4H5ZkeddvgmJwUAGOJcOvWE6FeFh2qkANlnXD6f10wdZuuBHi0CoCj00s25fgrYw"
+                                                               stripeKey="sk_test_51LL0IADsWaEgpPYfzQZv4UklRbb57DFSxVm9L0QoJeWsIlBLpndsouzZE1sSm2kmJ8ynoD7UUfIi7mmSS2RsZEDQ00BrJ0yZKl"
                                                                token={
                                                                   makePayment
                                                                }
@@ -725,17 +657,12 @@ const ProductDetails = ({ match }) => {
                               <div className="card">
                                  <div className="card-body">
                                     <h5 className="card-title">{`Product is Bidded upto ${winStatus.bid}`}</h5>
-
-                                    {/* {product.bids && product.bids.map(bids => (
-  <Product product = {product} />
-))} */}
-
                                     <table className="table table-hover">
                                        <thead>
                                           <tr>
                                              <th scope="col">Bidder Name</th>
                                              <th scope="col">Bidder Email</th>
-                                             <th scope="col">Bid Ammount</th>
+                                             <th scope="col">Bid Amount</th>
                                              <th scope="col">Bid Status</th>
                                           </tr>
                                        </thead>

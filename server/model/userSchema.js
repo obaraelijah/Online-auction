@@ -1,157 +1,128 @@
-import { Schema, model } from 'mongoose';
-import { hash } from 'bcryptjs';
-import { sign } from 'jsonwebtoken';
+import mongoose from "mongoose";
+import  bcrypt from "bcryptjs";
+import jwt from "jsonwebtoken";
 
 
-const userSchema = Schema({
+const userSchema = mongoose.Schema({
     name: {
-        type: String,
-        required: true
+      type: String,
+      required: true,
     },
     email: {
-        type: String,
-        required: true
+      type: String,
+      required: true,
     },
     phone: {
-        type: Number,
-        required: true
+      type: Number,
+      required: true,
     },
     password: {
-        type: String,
-        required: true
+      type: String,
+      required: true,
     },
     cpassword: {
-        type: String,
-        required: true
+      type: String,
+      required: true,
     },
     date: {
-        type: Date,
-        default: Date.now
+      type: Date,
+      default: Date.now,
     },
-    messages: [{
-
-
+    messages: [
+      {
         name: {
-            type: String,
-            required: true
+          type: String,
+          required: true,
         },
         email: {
-            type: String,
-            required: true
+          type: String,
+          required: true,
         },
         subject: {
-            type: String,
-            required: true
+          type: String,
+          required: true,
         },
         message: {
-            type: String,
-            required: true
-        }
-
-
-    }],
-    fmessages: [{
-
-
+          type: String,
+          required: true,
+        },
+      },
+    ],
+    fmessages: [
+      {
         name: {
-            type: String,
-            required: true
+          type: String,
+          required: true,
         },
         email: {
-            type: String,
-            required: true
+          type: String,
+          required: true,
         },
         subject: {
-            type: String,
-            required: true
+          type: String,
+          required: true,
         },
         message: {
-            type: String,
-            required: true
-        }
-
-
-    }],
+          type: String,
+          required: true,
+        },
+      },
+    ],
     tokens: [
-        {
-            token : {
-                type: String,
-                required:true
-            }
-        }
-    ]
-
-})
-
-
-
-
-// Hasing Password
-
-userSchema.pre('save', async function (next) {
-
+      {
+        token: {
+          type: String,
+          required: true,
+        },
+      },
+    ],
+  });
+  
+  // Hashing Password
+  userSchema.pre('save', async function (next) {
     if (this.isModified('password')) {
-        this.password = await hash(this.password, 12);
-        this.cpassword = await hash(this.cpassword, 12);
+      this.password = await bcrypt.hash(this.password, 12);
+      this.cpassword = await bcrypt.hash(this.cpassword, 12);
     }
-
     next();
-
-});
-
-// Generating Token
-userSchema.methods.generateAuthToken = async function () {
-    try{
-            let token = sign({_id: this._id } , process.env.SECRET_KEY);
-            this.tokens = this.tokens.concat({token : token});
-            await this.save();
-            return token;
-    }catch(err){
-                console.log(err);
-    }
-}
-
-
-
-// SAVE CONTACT DATA 
-userSchema.methods.addMessage = async function(name, email, subject, message){
-
-try {
-    
-this.messages = this.messages.concat({name, email, subject, message});
-await this.save();
-return this.messages;
-
-} catch (error) {
-    console.log(`userSchema error : ${error}`);
-    
-}
-
-}
-
-// SAVE FEEDBACK DATA 
-userSchema.methods.addFeedback = async function(name, email, subject, message){
-
+  });
+  
+  // Generating Token
+  userSchema.methods.generateAuthToken = async function () {
     try {
-        
-    this.fmessages = this.fmessages.concat({name, email, subject, message});
+      let token = jwt.sign({ _id: this._id }, process.env.SECRET_KEY);
+      this.tokens = this.tokens.concat({ token: token });
+      await this.save();
+      return token;
+    } catch (err) {
+      throw new Error(`Failed to generate authentication token: ${err}`);
+    }
+  };
+  
+  // save contact data
+  userSchema.methods.addMessage = async function (name, email, subject, message) {
+    try {
+      this.messages = this.messages.concat({ name, email, subject, message });
+      await this.save();
+      return this.messages;
+    } catch (error) {
+      throw new Error(`Failed to save contact data: ${error}`);
+    }
+  };
+  
+//save feedback data
+userSchema.methods.addFeedback = async function (name, email, subject, message) {
+    try {
+    this.fmessages = this.fmessages.concat({ name, email, subject, message });
     await this.save();
     return this.fmessages;
-    
     } catch (error) {
-        console.log(`userSchema error : ${error}`);
-        
+    throw new Error(`Failed to save feedback data: ${error}`);
     }
+    };
     
-    }
-
-
-
-
-
-
-
-
-const User = model('USER', userSchema);
-
+const User = mongoose.model('USER', userSchema);
+    
 export default User;
+
+

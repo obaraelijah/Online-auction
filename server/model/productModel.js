@@ -1,6 +1,6 @@
-import { Schema, model } from 'mongoose';
+import mongoose from "mongoose";
 
-const productSchema = new Schema({
+const productSchema = new mongoose.Schema({
   itemName: {
     type: String,
     required: [true, "PLEASE ENTER NAME"]
@@ -8,7 +8,6 @@ const productSchema = new Schema({
   description: {
     type: String,
     required: [true, "PLEASE ENTER DESCRIPTION"]
-
   },
   startingBid: {
     type: Number,
@@ -25,7 +24,7 @@ const productSchema = new Schema({
     }
   }],
   category: {
-    type: String, 
+    type: String,
     required: [true, "PLEASE ENTER CATEGORY"]
   },
   createdAt: {
@@ -41,14 +40,14 @@ const productSchema = new Schema({
     required: "Auction end time is required"
   },
   seller: {
-    type: Schema.ObjectId,
+    type: mongoose.Schema.ObjectId,
     ref: 'USER'
-  },    
+  },
   bids: [{
-    bidder: { type: Schema.ObjectId, ref: 'USER' },
+    bidder: { type: mongoose.Schema.ObjectId, ref: 'USER' },
     bid: Number,
     time: Date
   }]
-})
+});
 
-export default model('Product', productSchema);
+export default mongoose.model('Product', productSchema);
