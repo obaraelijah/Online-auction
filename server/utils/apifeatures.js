@@ -26,7 +26,6 @@ class ApiFeatures{
       this.query = this.query.find({ ...keyword }); 
       return this;
   }
-
   // Filter Functionality
 filter() {
   
@@ -45,15 +44,10 @@ removeFields.forEach((key) => delete queryCopy[key]);
 // So -> convert into string (json.stringify()) -> edit -> convert into object (json.parse())
 // console.log(queryCopy);
 let queryStr = JSON.stringify(queryCopy);
-
-
 queryStr = queryStr.replace(/\b(gt|gte|lt|lte)\b/g , (key) => `$${key}`);
-
-
 // this.query->Find method && queryCopy -> { category: 'laptop' }
 this.query = this.query.find(JSON.parse(queryStr));
 // console.log(queryStr);
-
 return this;
 
 }
