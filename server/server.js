@@ -21,14 +21,12 @@ const stripeInstance = stripe(process.env.STRIPE_API_KEY);
 
 dotenv.config()
 
-
 //cloudinary config
 cloudinary.config({
   cloud_name : process.env.CLOUDINARY_NAME,
   api_key : process.env.CLOUDINARY_API_KEY,
   api_secret: process.env.CLOUDINARY_API_SECRET
 });
-
 
 app.use(express.json({ limit: "50mb" }))
 app.use(cookieParser());
@@ -49,7 +47,6 @@ app.use(productsRouter);
 
 //middleware for errors
 app.use(errorManager);
-
 
 //stripe payment
 app.post('/payment', (req, res) => {
@@ -84,8 +81,6 @@ app.post('/payment', (req, res) => {
     .then((result) => res.status(200).json(result))
     .catch((err) => console.log(err));
 });
-
-
 
 //db connection
 async function connect() {
