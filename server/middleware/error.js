@@ -5,7 +5,6 @@ export default function errorManager(err, req, res, next) {
     // If headers have already been sent, skip the middleware
     return next(err);
   }
-
   err._statusCode = err.statusCode || 500;
   err._message = err.message || "Internal Server Error";
 

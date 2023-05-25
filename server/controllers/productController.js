@@ -103,7 +103,7 @@ export const createProduct = catchAsyncErrors(async (req, res, next) => {
     if (!product) {
       return next(new ErrorHandler("Product Not Found", 404));
     }
-  
+
     // Check if new images are provided
     if (req.body.images) {
       // Delete existing images from Cloudinary
