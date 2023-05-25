@@ -31,9 +31,7 @@ authRouter.post('/register', async (req, res) => {
             return res.status(400).json({ error: 'Passwords do not match' });
         } else {
             const user = new User({ name, email, phone, password, cpassword });
-
             // Hashing is Used
-
             await user.save();
 
             res.status(201).json({ message: 'User registered successfully' });
@@ -57,7 +55,6 @@ authRouter.post('/signin', async (req, res) => {
         if (password.length < 8) {
             return res.status(400).json({ error: 'Invalid credentials' });
         }
-
         console.log(password.length);
         const userLogin = await User.findOne({ email: email });
 
@@ -69,7 +66,6 @@ authRouter.post('/signin', async (req, res) => {
             } else {
                 token = await userLogin.generateAuthToken();
                 console.log(token);
-
                 res.cookie('jwtoken', token, {
                     expires: new Date(Date.now() + 25892000000),
                     httpOnly: true,
@@ -98,7 +94,6 @@ authRouter.get('/getdata', authenticate , (req, res) => {
     // req.rootUser -> Sending Currently logged in person profile 
     res.send(req.rootUser);
 });
-
 //change password route
 authRouter.put('/password/update', authenticate, async (req, res) => {
     try {
@@ -207,7 +202,5 @@ authRouter.put('/password/update', authenticate, async (req, res) => {
       res.status(500).json({ error: "Server error" });
     }
   });
-
-  
 
 export default authRouter;
