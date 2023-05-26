@@ -10,5 +10,4 @@
 2. NPM  or Yarn 
 3. MongoDB 
 4. Cloudinary account to store images.
-
 ####  How to run this code

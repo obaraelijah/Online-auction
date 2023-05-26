@@ -81,7 +81,6 @@ app.post('/payment', (req, res) => {
     .then((result) => res.status(200).json(result))
     .catch((err) => console.log(err));
 });
-
 //db connection
 async function connect() {
   try {
