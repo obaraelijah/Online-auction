@@ -6,8 +6,6 @@ import cookieParser from 'cookie-parser';
 import cors from 'cors';
 import fileUpload from 'express-fileupload';
 import bodyParser from 'body-parser';
-
-
 import authRouter from './Routes/authRouter.js';
 import productsRouter from './Routes/productsRouter.js';
 
@@ -104,7 +102,6 @@ app.listen(port, () => {
 process.on("unhandledRejection" , err => {
   console.log(`Error : ${err.message}`);
   console.log(`Config file problem sutting down server due to unhandled promise rejection`);
-
   server.close(() => {
       process.exit(1);
   });
