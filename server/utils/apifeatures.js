@@ -23,17 +23,13 @@ class ApiFeatures{
   }
   // Filter Functionality
 filter() {
-  
-  // object contains refrence -> Can not directly assign -> Used Spread Operator for copy of object 
-  const queryCopy = {...this.queryStr};
+    const queryCopy = {...this.queryStr};
 const removeFields = ["keyword" , "page" , "limit"];
 
 removeFields.forEach((key) => delete queryCopy[key]);
 let queryStr = JSON.stringify(queryCopy);
 queryStr = queryStr.replace(/\b(gt|gte|lt|lte)\b/g , (key) => `$${key}`);
-// this.query->Find method && queryCopy -> { category: 'laptop' }
 this.query = this.query.find(JSON.parse(queryStr));
-// console.log(queryStr);
 return this;
 
 }
