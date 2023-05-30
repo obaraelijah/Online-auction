@@ -222,7 +222,7 @@ const Signup = () => {
                                  <input
                                     type="password"
                                     name="cpassword"
-                                    placeholder="Conform Password"
+                                    placeholder="Confirm Password"
                                     autoComplete="off"
                                     value={user.cpassword}
                                     onChange={handleInputs}
