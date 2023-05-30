@@ -36,12 +36,12 @@ CLOUDINARY_NAME= your API name
 CLOUDINARY_API_KEY=  your API key
 CLOUDINARY_API_SECRET= your API secret key
 ### Install Dependencies (frontend & backend)
-
+```
 # Open  client || cd client
 npm install
 # Open  Server || cd server
 npm install
-
+```
 ### Run
 ```
 # Run Client
