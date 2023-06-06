@@ -13,7 +13,6 @@ export default function errorManager(err, req, res, next) {
     const message = `Resource Not Found. Invalid: ${err.path}`;
     err = new ErrorHandler(message, 400);
   }
-
   res.status(err._statusCode).json({
     success: false,
     message: err._message,

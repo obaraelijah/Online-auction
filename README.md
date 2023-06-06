@@ -26,7 +26,7 @@ The application includes two modules (client and server). For local developement
 
 ### Env Variables
 
-Inside .env
+Inside .env file
 
 PORT = 5000
 MONGO_URI = your mongodb uri
