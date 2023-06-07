@@ -2,6 +2,10 @@ import axios from "axios";
 import React, { useState } from "react";
 import { useAlert } from "react-alert";
 
+const axiosInstance = axios.create({
+   baseURL: process.env.REACT_APP_API_URL,
+});
+
 const PlaceBid = ({ product }) => {
    const [amount, setAmount] = useState("");
 
@@ -18,7 +22,7 @@ const PlaceBid = ({ product }) => {
          myForm.set("bidAmmount", amount);
 
          console.log(myForm);
-         axios({
+         axiosInstance({
             method: "post",
             url: "/products/bid",
             data: myForm,
