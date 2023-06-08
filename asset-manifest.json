@@ -1,0 +1,43 @@
+{
+  "files": {
+    "main.css": "/Online-auction/static/css/main.f3ca6280.css",
+    "main.js": "/Online-auction/static/js/main.f40e6e3a.js",
+    "static/media/fa-solid-900.svg": "/Online-auction/static/media/fa-solid-900.7a8b4f130182d19a2d7c.svg",
+    "static/media/fa-brands-400.svg": "/Online-auction/static/media/fa-brands-400.2f517e09eb2ca6650ff5.svg",
+    "static/media/fontawesome-webfont.svg?v=4.7.0": "/Online-auction/static/media/fontawesome-webfont.c1e38fd9e0e74ba58f7a.svg",
+    "static/media/fa-solid-900.eot": "/Online-auction/static/media/fa-solid-900.9bbb245e67a133f6e486.eot",
+    "static/media/fa-solid-900.ttf": "/Online-auction/static/media/fa-solid-900.be9ee23c0c6390141475.ttf",
+    "static/media/fontawesome-webfont.eot": "/Online-auction/static/media/fontawesome-webfont.8b43027f47b20503057d.eot",
+    "static/media/fontawesome-webfont.ttf?v=4.7.0": "/Online-auction/static/media/fontawesome-webfont.1e59d2330b4c6deb84b3.ttf",
+    "static/media/fa-regular-400.svg": "/Online-auction/static/media/fa-regular-400.4689f52cc96215721344.svg",
+    "static/media/about4.png": "/Online-auction/static/media/about4.834993e39b49eece4962.png",
+    "static/media/fa-brands-400.eot": "/Online-auction/static/media/fa-brands-400.23f19bb08961f37aaf69.eot",
+    "static/media/fa-brands-400.ttf": "/Online-auction/static/media/fa-brands-400.527940b104eb2ea366c8.ttf",
+    "static/media/fa-solid-900.woff": "/Online-auction/static/media/fa-solid-900.eeccf4f66002c6f2ba24.woff",
+    "static/media/fontawesome-webfont.woff?v=4.7.0": "/Online-auction/static/media/fontawesome-webfont.f691f37e57f04c152e23.woff",
+    "static/media/fa-brands-400.woff": "/Online-auction/static/media/fa-brands-400.2285773e6b4b172f07d9.woff",
+    "static/media/fa-solid-900.woff2": "/Online-auction/static/media/fa-solid-900.1551f4f60c37af51121f.woff2",
+    "static/media/fontawesome-webfont.woff2?v=4.7.0": "/Online-auction/static/media/fontawesome-webfont.20fd1704ea223900efa9.woff2",
+    "static/media/fa-brands-400.woff2": "/Online-auction/static/media/fa-brands-400.d878b0a6a1144760244f.woff2",
+    "static/media/auction1.png": "/Online-auction/static/media/auction1.37b5cc522a8f019e17fd.png",
+    "static/media/features.png": "/Online-auction/static/media/features.7fbc4dc790395faa5f44.png",
+    "static/media/team.png": "/Online-auction/static/media/team.23ba66d5efea0d820881.png",
+    "static/media/fa-regular-400.eot": "/Online-auction/static/media/fa-regular-400.77206a6bb316fa0aded5.eot",
+    "static/media/fa-regular-400.ttf": "/Online-auction/static/media/fa-regular-400.491974d108fe4002b2aa.ttf",
+    "static/media/values-1.png": "/Online-auction/static/media/values-1.006c8f97bfa409ea7f42.png",
+    "static/media/values-3.png": "/Online-auction/static/media/values-3.ecfe7a9ca47c4b3de984.png",
+    "static/media/arrow-310633_960_720.png": "/Online-auction/static/media/arrow-310633_960_720.67a43634f36bf458a306.png",
+    "static/media/register.svg": "/Online-auction/static/media/register.50826cf012be4837da21922bc832a89c.svg",
+    "static/media/profile-icon-png-899.png": "/Online-auction/static/media/profile-icon-png-899.6dc4b82c86e5a5178bfc.png",
+    "static/media/fa-regular-400.woff": "/Online-auction/static/media/fa-regular-400.bb58e57c48a3e911f15f.woff",
+    "static/media/fa-regular-400.woff2": "/Online-auction/static/media/fa-regular-400.7a3337626410ca2f4071.woff2",
+    "static/media/login.svg": "/Online-auction/static/media/login.e2b7e409088f31f88e6cd6cee5e3a3b8.svg",
+    "index.html": "/Online-auction/index.html",
+    "main.f3ca6280.css.map": "/Online-auction/static/css/main.f3ca6280.css.map",
+    "main.f40e6e3a.js.map": "/Online-auction/static/js/main.f40e6e3a.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.f3ca6280.css",
+    "static/js/main.f40e6e3a.js"
+  ]
+}
