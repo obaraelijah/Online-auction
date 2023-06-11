@@ -2,6 +2,11 @@
 
 > The main purpose our website is, to give a virtual platform to the sellers who are interested to put their product for online selling via Bidding. And the bidders who are interested to buy and bid for the rare and best products.
 
+![Screenshot from 2023-06-08 12-50-47](https://github.com/obaraelijah/Online-auction/assets/107021904/54d38467-5e5b-4696-8838-bfd1c63885ea)
+![Screenshot from 2023-06-08 12-50-25](https://github.com/obaraelijah/Online-auction/assets/107021904/dc877666-aa22-4f40-8540-07eafaa930be)
+![Screenshot from 2023-06-08 12-50-00](https://github.com/obaraelijah/Online-auction/assets/107021904/e40dd87c-f5f7-42d0-9ea4-60e403acfc18)
+
+
 ## Technologies
 - Frontend - Bootstrap 5 & React.js 
 - Backend - Node js & Express
