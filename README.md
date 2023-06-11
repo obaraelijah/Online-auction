@@ -1,12 +1,13 @@
 # Online Auction Platform
 
 > The main purpose our website is, to give a virtual platform to the sellers who are interested to put their product for online selling via Bidding. And the bidders who are interested to buy and bid for the rare and best products.
+
 ![Screenshot from 2023-06-08 12-50-00](https://github.com/obaraelijah/Online-auction/assets/107021904/e40dd87c-f5f7-42d0-9ea4-60e403acfc18)
 
 ## Technologies
-- Frontend - Bootstrap 5 & React.js 
+- Frontend - React.js, Redux & Bootstrap 5
 - Backend - Node js & Express
-- NOSQL Database
+- NoSQL Database(Mongodb)
 ### PROJECT SETUP
 The application includes two modules (client and server). For local developement, run npm install in client and server both directory which will install all dependencies accordingly. Before running this command please make sure your environment variables are setup accordingly.
 
@@ -20,9 +21,9 @@ The application includes two modules (client and server). For local developement
 2. Clone this repository.
 3. Update .env with your MongoDB URI and Secret Key , Cloudinary api Key.
 4. Open command line in the cloned folder,
-   - To install dependencies, run   npm install    , for client and server both directories.
-   - To run the application , run   npm start   for  server side.
-   - And run   npm start   , for client side.
+   - To install dependencies, run  npm install , for client and server both directories.
+   - To run the application , run npm start for server side.
+   - And run npm start , for client side.
 5. Open [localhost:3000](http://localhost:3000/) in the browser.
 
 ### Env Variables
