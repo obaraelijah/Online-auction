@@ -29,6 +29,7 @@ The application includes two modules (client and server). For local developement
 
 Inside .env file
 
+```
 PORT = 5000
 MONGO_URI = your mongodb uri
 JWT_SECRET = 'abc123'
@@ -36,6 +37,7 @@ JWT_SECRET = 'abc123'
 CLOUDINARY_NAME= your API name
 CLOUDINARY_API_KEY=  your API key
 CLOUDINARY_API_SECRET= your API secret key
+```
 ### Install Dependencies (frontend & backend)
 ```
 # Open  client || cd client
